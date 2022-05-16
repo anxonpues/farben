@@ -30,12 +30,7 @@ Game::Game( MainWindow& wnd )
 	r( 255 ),
 	g( 0 ),
 	b( 0 ),
-	counter( 0 ),
-	steps(0),
-	rphase(0),
-	gphase(1),
-	bphase(2)
-
+	counter( 0 )
 {
 }
 

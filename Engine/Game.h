@@ -50,10 +50,6 @@ private:
 	const int  sw = Graphics::ScreenWidth;
 	const int  sh = Graphics::ScreenHeight;
 	int counter;
-	int steps;
-	int rphase;
-	int gphase;
-	int bphase;
 
 	/********************************/
 };
