@@ -25,9 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	x( 0 ),
-	y( 0 ),
-	r( 255 ),
+	r( 0 ),
 	g( 0 ),
 	b( 0 ),
 	counter( 0 )
@@ -47,7 +45,7 @@ void Game::UpdateModel()
 	
 	const int frames_per_mode = 256;
 
-	r = 255 * ((counter / frames_per_mode)%4 == 0) +
+	/*r = 255 * ((counter / frames_per_mode)%4 == 0) +
 		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 1)) +
 		0 * ((counter / frames_per_mode)%4 == 2) +
 		(counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 3);
@@ -58,8 +56,38 @@ void Game::UpdateModel()
 	b = 255 * ((counter / frames_per_mode) % 4 == 3) +
 		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 0)) +
 		0 * ((counter / frames_per_mode) % 4 == 1) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2);
-	counter = counter % 4096;
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2);*/
+	r = 255 * ((counter / frames_per_mode) % 6 == 0) +
+		255 * ((counter / frames_per_mode) % 6 == 1) +
+		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 2)) +
+		0 * ((counter / frames_per_mode) % 6 == 3) +
+		0 * ((counter / frames_per_mode) % 6 == 4) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 5);
+	
+	g = 255 * ((counter / frames_per_mode) % 6 == 2) +
+		255 * ((counter / frames_per_mode) % 6 == 3) +
+		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 4)) +
+		0 * ((counter / frames_per_mode) % 6 == 0) +
+		0 * ((counter / frames_per_mode) % 6 == 5) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 1);
+
+	b = 255 * ((counter / frames_per_mode) % 6 == 4) +
+		255 * ((counter / frames_per_mode) % 6 == 3) +
+		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 5)) +
+		0 * ((counter / frames_per_mode) % 6 == 0) +
+		0 * ((counter / frames_per_mode) % 6 == 1) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 2);
+
+	{
+		float tot = (float)r + (float)g + (float)b;
+		float ro = (float)r / tot * 256.0f;
+		float gr = (float)g / tot * 256.0f;
+		float bl = (float)b / tot * 256.0f;
+		r = (int)ro;
+		g = (int)gr;
+		b = (int)bl;
+	}
+	counter %= 16000000;
 	
 
 }
@@ -70,11 +98,9 @@ void Game::ComposeFrame()
 	{
 		for(int j = 0; j < sh; j++)
 		{ 
-			gfx.PutPixel(x+i,y+j,r,g,b);
-			if((i*j)% 6600 == 0)
-				counter++;
+			gfx.PutPixel(i,j,r,g,b);
+			
 		}
 	}
-	
-
+	counter++;
 }

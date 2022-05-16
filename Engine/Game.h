@@ -42,8 +42,6 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	int x;
-	int y;
 	int r;
 	int g;
 	int b;
