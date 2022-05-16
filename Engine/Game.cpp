@@ -97,6 +97,7 @@ void Game::ComposeFrame()
 {
 	int flop = 0;
 	int flip = 0;
+	int flap = 0;
 	for (int i = 0; i < sw; i++)
 	{
 		for(int j = 0; j < sh; j++)
@@ -112,5 +113,9 @@ void Game::ComposeFrame()
 				flip += 3;
 		flop %= 255;
 	}
-	flip %= 255;	
+	flip %= 222;
+	for (int k = 0; k < 100000000; k++)		// retardo
+		if (k % 7 >= 3 && k % 11 <= 5)
+			flap += 3;
+	flap %= 222;
 }
