@@ -43,7 +43,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	
-	const int frames_per_mode = 256;
+	const int frames_per_mode = 512;
 
 	/*r = 255 * ((counter / frames_per_mode)%4 == 0) +
 		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 1)) +
@@ -64,19 +64,19 @@ void Game::UpdateModel()
 		0 * ((counter / frames_per_mode) % 6 == 4) +
 		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 5);
 	
-	g = 255 * ((counter / frames_per_mode) % 6 == 2) +
+	g = 0 * ((counter / frames_per_mode) % 6 == 0) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 1)+
+		255 * ((counter / frames_per_mode) % 6 == 2) +
 		255 * ((counter / frames_per_mode) % 6 == 3) +
 		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 4)) +
-		0 * ((counter / frames_per_mode) % 6 == 0) +
-		0 * ((counter / frames_per_mode) % 6 == 5) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 1);
+		0 * ((counter / frames_per_mode) % 6 == 5);
 
-	b = 255 * ((counter / frames_per_mode) % 6 == 4) +
-		255 * ((counter / frames_per_mode) % 6 == 3) +
-		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 5)) +
-		0 * ((counter / frames_per_mode) % 6 == 0) +
+	b = 0 * ((counter / frames_per_mode) % 6 == 0) +
 		0 * ((counter / frames_per_mode) % 6 == 1) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 2);
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 2)+
+		255 * ((counter / frames_per_mode) % 6 == 3) +
+		255 * ((counter / frames_per_mode) % 6 == 4) +
+		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 6 == 5));
 
 	{
 		float tot = (float)r + (float)g + (float)b;
@@ -101,7 +101,7 @@ void Game::ComposeFrame()
 		for(int j = 0; j < sh; j++)
 		{ 
 			gfx.PutPixel(i,j,r,g,b);
-			for (int k = 0; k < 10000000000; k++)		// retardo
+			for (int k = 0; k < 1000000; k++)		// retardo
 				if (k % 7 >= 3 && k % 11 <= 5)
 					flop += 3;
 		}
