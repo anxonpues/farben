@@ -43,7 +43,7 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	
-	const int frames_per_mode = 512;
+	const int frames_per_mode = 800;
 
 	/*r = 255 * ((counter / frames_per_mode)%4 == 0) +
 		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 1)) +
@@ -96,6 +96,7 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	int flop = 0;
+	int flip = 0;
 	for (int i = 0; i < sw; i++)
 	{
 		for(int j = 0; j < sh; j++)
@@ -106,7 +107,10 @@ void Game::ComposeFrame()
 					flop += 3;
 		}
 		counter++;
+		for (int k = 0; k < 1000000000; k++)		// retardo
+			if (k % 7 >= 2 && k % 11 <= 7)
+				flip += 3;
 		flop %= 255;
 	}
-	
+	flip %= 255;	
 }
