@@ -95,13 +95,18 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	int flop = 0;
 	for (int i = 0; i < sw; i++)
 	{
 		for(int j = 0; j < sh; j++)
 		{ 
 			gfx.PutPixel(i,j,r,g,b);
+			for (int k = 0; k < 10000000000; k++)		// retardo
+				if (k % 7 >= 3 && k % 11 <= 5)
+					flop += 3;
 		}
 		counter++;
+		flop %= 255;
 	}
 	
 }
