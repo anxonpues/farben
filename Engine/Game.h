@@ -42,5 +42,12 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	int x;
+	int y;
+	int r;
+	int g;
+	int b;
+	const int  sw = Graphics::ScreenWidth;
+	const int  sh = Graphics::ScreenHeight;
 	/********************************/
 };

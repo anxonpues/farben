@@ -24,7 +24,13 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	x( 0 ),
+	y( 0 ),
+	r( 255 ),
+	g( 0 ),
+	b( 0 )
+
 {
 }
 
@@ -42,4 +48,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	for(int i = 0; i< sw; i++)
+		for(int j = 0; j < sh; j++)
+			gfx.PutPixel(x+i,y+j,r,g,b);
 }
