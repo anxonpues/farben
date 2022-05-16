@@ -54,11 +54,12 @@ void Game::UpdateModel()
 	g = 255 * ((counter / frames_per_mode) % 4 == 1) +
 		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2)) +
 		0 * ((counter / frames_per_mode) % 4 == 3) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2);
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 0);
 	b = 255 * ((counter / frames_per_mode) % 4 == 3) +
 		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 0)) +
-		0 * ((counter / frames_per_mode) % 4 == 2) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 1);
+		0 * ((counter / frames_per_mode) % 4 == 1) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2);
+	counter = counter % 4096;
 	
 
 }
@@ -69,8 +70,8 @@ void Game::ComposeFrame()
 	{
 		for(int j = 0; j < sh; j++)
 			gfx.PutPixel(x+i,y+j,r,g,b);
-		counter++;
-	}
 		
+	}
+	counter++;
 
 }
