@@ -29,7 +29,12 @@ Game::Game( MainWindow& wnd )
 	y( 0 ),
 	r( 255 ),
 	g( 0 ),
-	b( 0 )
+	b( 0 ),
+	counter( 0 ),
+	steps(0),
+	rphase(0),
+	gphase(1),
+	bphase(2)
 
 {
 }
@@ -44,11 +49,33 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	
+	const int frames_per_mode = 256;
+
+	r = 255 * ((counter / frames_per_mode)%4 == 0) +
+		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 1)) +
+		0 * ((counter / frames_per_mode)%4 == 2) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 3);
+	g = 255 * ((counter / frames_per_mode) % 4 == 1) +
+		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2)) +
+		0 * ((counter / frames_per_mode) % 4 == 3) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2);
+	b = 255 * ((counter / frames_per_mode) % 4 == 3) +
+		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 0)) +
+		0 * ((counter / frames_per_mode) % 4 == 2) +
+		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 1);
+	
+
 }
 
 void Game::ComposeFrame()
 {
-	for(int i = 0; i< sw; i++)
+	for (int i = 0; i < sw; i++)
+	{
 		for(int j = 0; j < sh; j++)
 			gfx.PutPixel(x+i,y+j,r,g,b);
+		counter++;
+	}
+		
+
 }
