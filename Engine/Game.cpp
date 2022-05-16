@@ -80,9 +80,10 @@ void Game::UpdateModel()
 
 	{
 		float tot = (float)r + (float)g + (float)b;
-		float ro = (float)r / tot * 256.0f;
-		float gr = (float)g / tot * 256.0f;
-		float bl = (float)b / tot * 256.0f;
+		float fct = 256.0f / tot;
+		float ro = (float)r * fct;
+		float gr = (float)g * fct;
+		float bl = (float)b * fct;
 		r = (int)ro;
 		g = (int)gr;
 		b = (int)bl;
@@ -99,8 +100,8 @@ void Game::ComposeFrame()
 		for(int j = 0; j < sh; j++)
 		{ 
 			gfx.PutPixel(i,j,r,g,b);
-			
 		}
+		counter++;
 	}
-	counter++;
+	
 }
