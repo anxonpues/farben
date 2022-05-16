@@ -69,9 +69,12 @@ void Game::ComposeFrame()
 	for (int i = 0; i < sw; i++)
 	{
 		for(int j = 0; j < sh; j++)
+		{ 
 			gfx.PutPixel(x+i,y+j,r,g,b);
-		
+			if((i*j)% 6600 == 0)
+				counter++;
+		}
 	}
-	counter++;
+	
 
 }
