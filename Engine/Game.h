@@ -47,7 +47,6 @@ private:
 	int b;
 	const int  sw = Graphics::ScreenWidth;
 	const int  sh = Graphics::ScreenHeight;
-	int counter;
-
+	float counter;
 	/********************************/
 };
