@@ -43,12 +43,12 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	const float frames_per_mode = 255.0f;
+	const float frames_per_mode = 160.0f;
 	// PROBAR CON FUNCIONES SINUSOIDALES Y FRECUENCIAS Y DESFASES VARIABLES POR TECLAS 
 	// tipo red = sin(counter / lambda + phase )
 	r = (int)(sin(counter / frames_per_mode + 0.0f) *255.0f);
-	g = (int)(sin(counter / frames_per_mode + 300.f) * 255.0f);
-	b = (int)(sin(counter / frames_per_mode + 600.0) * 255.0f);
+	g = (int)(sin(counter / frames_per_mode + 600.f) * 255.0f);
+	b = (int)(sin(counter / frames_per_mode + 1200.0f) * 255.0f);
 	 
 	//r = 255 * (((int)counter / frames_per_mode) % 6 == 0) +
 	//	255 * (((int)counter / frames_per_mode) % 6 == 1) +
@@ -91,6 +91,6 @@ void Game::ComposeFrame()
 		{ 
 			gfx.PutPixel(i,j,r,g,b);
 		}
-		counter = counter + 0.0009f ;
+		counter = counter + 0.0099f ;
 	}
 }
