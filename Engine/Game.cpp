@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include <math.h>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -42,80 +43,54 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	
-	const int frames_per_mode = 800;
+	const float frames_per_mode = 255.0f;
+	// PROBAR CON FUNCIONES SINUSOIDALES Y FRECUENCIAS Y DESFASES VARIABLES POR TECLAS 
+	// tipo red = sin(counter / lambda + phase )
+	r = (int)(sin(counter / frames_per_mode + 0.0f) *255.0f);
+	g = (int)(sin(counter / frames_per_mode + 300.f) * 255.0f);
+	b = (int)(sin(counter / frames_per_mode + 600.0) * 255.0f);
+	 
+	//r = 255 * (((int)counter / frames_per_mode) % 6 == 0) +
+	//	255 * (((int)counter / frames_per_mode) % 6 == 1) +
+	//	(255 - ((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 2)) +
+	//	0 * (((int)counter / frames_per_mode) % 6 == 3) +
+	//	0 * (((int)counter / frames_per_mode) % 6 == 4) +
+	//	((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 5);
+	//
+	//g = 0 * (((int)counter / frames_per_mode) % 6 == 0) +
+	//	((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 1)+
+	//	255 * (((int)counter / frames_per_mode) % 6 == 2) +
+	//	255 * (((int)counter / frames_per_mode) % 6 == 3) +
+	//	(255 - ((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 4)) +
+	//	0 * (((int)counter / frames_per_mode) % 6 == 5);
 
-	/*r = 255 * ((counter / frames_per_mode)%4 == 0) +
-		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 1)) +
-		0 * ((counter / frames_per_mode)%4 == 2) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode)%4 == 3);
-	g = 255 * ((counter / frames_per_mode) % 4 == 1) +
-		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2)) +
-		0 * ((counter / frames_per_mode) % 4 == 3) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 0);
-	b = 255 * ((counter / frames_per_mode) % 4 == 3) +
-		(255 - (counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 0)) +
-		0 * ((counter / frames_per_mode) % 4 == 1) +
-		(counter % frames_per_mode) * ((counter / frames_per_mode) % 4 == 2);*/
-	r = 255 * (((int)counter / frames_per_mode) % 6 == 0) +
-		255 * (((int)counter / frames_per_mode) % 6 == 1) +
-		(255 - ((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 2)) +
-		0 * (((int)counter / frames_per_mode) % 6 == 3) +
-		0 * (((int)counter / frames_per_mode) % 6 == 4) +
-		((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 5);
-	
-	g = 0 * (((int)counter / frames_per_mode) % 6 == 0) +
-		((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 1)+
-		255 * (((int)counter / frames_per_mode) % 6 == 2) +
-		255 * (((int)counter / frames_per_mode) % 6 == 3) +
-		(255 - ((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 4)) +
-		0 * (((int)counter / frames_per_mode) % 6 == 5);
+	//b = 0 * (((int)counter / frames_per_mode) % 6 == 0) +
+	//	0 * (((int)counter / frames_per_mode) % 6 == 1) +
+	//	((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 2)+
+	//	255 * (((int)counter / frames_per_mode) % 6 == 3) +
+	//	255 * (((int)counter / frames_per_mode) % 6 == 4) +
+	//	(255 - ((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 5));
 
-	b = 0 * (((int)counter / frames_per_mode) % 6 == 0) +
-		0 * (((int)counter / frames_per_mode) % 6 == 1) +
-		((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 2)+
-		255 * (((int)counter / frames_per_mode) % 6 == 3) +
-		255 * (((int)counter / frames_per_mode) % 6 == 4) +
-		(255 - ((int)counter % frames_per_mode) * (((int)counter / frames_per_mode) % 6 == 5));
-
-	{
-		float tot = (float)r + (float)g + (float)b;
-		float fct = 256.0f / tot;
-		float ro = (float)r * fct;
-		float gr = (float)g * fct;
-		float bl = (float)b * fct;
-		r = (int)ro;
-		g = (int)gr;
-		b = (int)bl;
-	}
-	//counter %= 16000000;
-	
-
+	//{
+	//	float tot = (float)r + (float)g + (float)b;
+	//	float fct = 256.0f / tot;
+	//	float ro = (float)r * fct;
+	//	float gr = (float)g * fct;
+	//	float bl = (float)b * fct;
+	//	r = (int)ro;
+	//	g = (int)gr;
+	//	b = (int)bl;
 }
+
 
 void Game::ComposeFrame()
 {
-	/*int flop = 0;
-	int flip = 0;
-	int flap = 0;*/
 	for (int i = 0; i < sw; i++)
 	{
 		for(int j = 0; j < sh; j++)
 		{ 
 			gfx.PutPixel(i,j,r,g,b);
-			//for (int k = 0; k < 1000000; k++)		// retardo
-			//	if (k % 7 >= 3 && k % 11 <= 5)
-			//		flop += 3;
 		}
-		counter = counter + 0.00001f ;
-		//for (int k = 0; k < 1000000000; k++)		// retardo
-		//	if (k % 7 >= 2 && k % 11 <= 7)
-		//		flip += 3;
-		//flop %= 255;
+		counter = counter + 0.0009f ;
 	}
-	//flip %= 222;
-	//for (int k = 0; k < 100000000; k++)		// retardo
-	//	if (k % 7 >= 3 && k % 11 <= 5)
-	//		flap += 3;
-	//flap %= 222;
 }
