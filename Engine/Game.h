@@ -48,7 +48,5 @@ private:
 	const int  sw = Graphics::ScreenWidth;
 	const int  sh = Graphics::ScreenHeight;
 	float counter;
-	const float pi;
-	const float frames_per_mode;
 	/********************************/
 };

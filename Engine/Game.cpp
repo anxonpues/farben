@@ -29,9 +29,7 @@ Game::Game( MainWindow& wnd )
 	r( 0 ),
 	g( 0 ),
 	b( 0 ),
-	counter( 0.0f ),
-	frames_per_mode(800.0f),
-	pi( 3.141596f )
+	counter( 0.0f )
 {
 }
 void Game::Go()
@@ -53,10 +51,10 @@ void Game::ComposeFrame()
 {
 	for (int i = 0; i < sw; i++)
 	{
-				int val = (int)counter;
-				int mode = val % 11;
-				switch (mode)
-				{
+			int val = (int)counter;
+			int mode = val % 11;
+			switch (mode)
+			{
 				case  0:
 				{
 					// red steady high, green steasy low, blue step down  MAGENTA to RED
@@ -157,20 +155,6 @@ void Game::ComposeFrame()
 						gfx.PutPixel(i, j, r, g, b);
 			}
 			counter = counter + 0.001f;
-			/*
-			  r = (int)((std::sin((counter+0.0f)   / frames_per_mode )+1.3f) * 255.0f);
-			  g = (int)((std::sin((counter+pi/2)   / frames_per_mode )+1.3f) * 255.0f);
-			  b = (int)((std::sin((counter+3*pi/2) / frames_per_mode )+1.3f) * 255.0f);
-			*/
-
-			// need to make 4 different states cor each primary colour, steady high, step down
-			// steady low and step up. As have three primary colors it means 12 main values
-			// that looks perfect a mod(val,12) function being val some incrementing integer,
-			// related to counter. So for each frame we will start vertical lines with 
-			// (x,y,r,g,b) being r,g and b like depending on val % 12, and val = function(counter)
-			// that can be as simple as casting val = (int)counter
-			// would call val % 12 mode taking values from 0 to 11 un back to 0 cyclicaly.
-
-		}
 	}
+}
 
