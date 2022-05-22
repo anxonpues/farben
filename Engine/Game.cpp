@@ -68,7 +68,6 @@ void Game::ComposeFrame()
 				case  1:
 				{
 					// red steady high, green steasy low, blue steady low RED
-					
 					break;
 					r = 255;
 					g = 0;
@@ -82,12 +81,10 @@ void Game::ComposeFrame()
 					g = val % 256;
 					b = 0;
 					break;
-
 				}
 				case  3:
 				{
 					// red steady high, green steady high, blue steady low YELLOW
-					
 					break;
 					r = 255;
 					g = 255;
@@ -105,7 +102,6 @@ void Game::ComposeFrame()
 				case  5:
 				{
 					// red steady low, green steady high, blue steady low  GREEN
-					
 					break;
 					r = 0;
 					g = 255;
@@ -123,7 +119,6 @@ void Game::ComposeFrame()
 				case  7:
 				{
 					// red steady low, green steady high, blue steady high  CYAN
-					
 					break;
 					r = 0;
 					g = 255;
@@ -141,7 +136,6 @@ void Game::ComposeFrame()
 				case 9:
 				{
 					// red steady low, green steady low, blue steady high  BLUE
-					
 					break;
 					r = 0;
 					g = 0;
@@ -156,9 +150,10 @@ void Game::ComposeFrame()
 					b = 255;
 					break;
 				}
-			
-		
-			}for (int j = 0; j < sh; j++){
+				default:
+				{}
+			}
+			for (int j = 0; j < sh; j++){
 						gfx.PutPixel(i, j, r, g, b);
 			}
 			counter = counter + 0.00001f;
