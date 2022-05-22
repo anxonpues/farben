@@ -156,7 +156,7 @@ void Game::ComposeFrame()
 			for (int j = 0; j < sh; j++){
 						gfx.PutPixel(i, j, r, g, b);
 			}
-			counter = counter + 0.00001f;
+			counter = counter + 0.001f;
 			/*
 			  r = (int)((std::sin((counter+0.0f)   / frames_per_mode )+1.3f) * 255.0f);
 			  g = (int)((std::sin((counter+pi/2)   / frames_per_mode )+1.3f) * 255.0f);
