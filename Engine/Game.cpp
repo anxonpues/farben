@@ -149,7 +149,7 @@ void Game::UpdateModel()
 	}
 	long long retard = 0;
 	long long kr = 0;
-	while (retard < 10000000000000L)
+	while (retard < 1L)
 	{
 		kr = kr + (retard % 256);
 		retard++;
@@ -157,7 +157,7 @@ void Game::UpdateModel()
 	}
 	kr = 0;
 	long long moreRetard = 0;
-	while (moreRetard < 100000000055000L)
+	while (moreRetard < 1L)
 	{
 		moreRetard++;
 		kr += (moreRetard % 256);
@@ -179,7 +179,7 @@ void Game::ComposeFrame()
 	{
 		gfx.PutPixel( x,y, r, g, b);
 		int kr = 0;
-		while (retard < 10000000000000L)
+		while (retard < 1L)
 		{		
 			kr = kr + (retard % 256);
 			retard++;
@@ -188,13 +188,13 @@ void Game::ComposeFrame()
 			
 	}
 	int kr = 0;
-	while (moreRetard < 100000000055000L)
+	while (moreRetard < 1L)
 	{
 		moreRetard++;
 		kr += (moreRetard % 256);
 		if (kr > 1000000000L)
 			kr = kr % 256;
 	}
-	counter = counter + 0.0001f;
+	counter = counter + 0.1f;
 }
 
