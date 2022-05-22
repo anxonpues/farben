@@ -52,7 +52,7 @@ Graphics::Graphics( HWNDKey& key )
 	sd.BufferDesc.Height = Graphics::ScreenHeight;
 	sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 	sd.BufferDesc.RefreshRate.Numerator = 1;		
-	sd.BufferDesc.RefreshRate.Denominator = 60;      
+	sd.BufferDesc.RefreshRate.Denominator = 60;      // cambiado de 60 a 120 !!!
 	sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	sd.OutputWindow = key.hWnd;
 	sd.SampleDesc.Count = 1;
@@ -110,7 +110,7 @@ Graphics::Graphics( HWNDKey& key )
 
 
 	// set viewport dimensions
-	D3D11_VIEWPORT vp;
+	D3D11_VIEWPORT vp{};
 	vp.Width = float( Graphics::ScreenWidth );
 	vp.Height = float( Graphics::ScreenHeight );
 	vp.MinDepth = 0.0f;
@@ -122,7 +122,7 @@ Graphics::Graphics( HWNDKey& key )
 
 	///////////////////////////////////////
 	// create texture for cpu render target
-	D3D11_TEXTURE2D_DESC sysTexDesc;
+	D3D11_TEXTURE2D_DESC sysTexDesc{};
 	sysTexDesc.Width = Graphics::ScreenWidth;
 	sysTexDesc.Height = Graphics::ScreenHeight;
 	sysTexDesc.MipLevels = 1;
@@ -349,7 +349,7 @@ std::wstring Graphics::Exception::GetErrorName() const
 
 std::wstring Graphics::Exception::GetErrorDescription() const
 {
-	std::array<wchar_t,512> wideDescription;
+	std::array<wchar_t,512> wideDescription{};
 	DXGetErrorDescription( hr,wideDescription.data(),wideDescription.size() );
 	return wideDescription.data();
 }

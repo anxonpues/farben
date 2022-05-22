@@ -29,6 +29,8 @@ Game::Game( MainWindow& wnd )
 	r( 0 ),
 	g( 0 ),
 	b( 0 ),
+	x( 0 ),
+	y( 0 ),
 	counter( 0.0f )
 {
 }
@@ -146,14 +148,14 @@ void Game::UpdateModel()
 		{}
 	}
 	long long retard = 0;
-	int kr = 0;
+	long long kr = 0;
 	while (retard < 10000000000000L)
 	{
 		kr = kr + (retard % 256);
 		retard++;
 		kr = kr % 1000000000;
 	}
-	int kr = 0;
+	kr = 0;
 	long long moreRetard = 0;
 	while (moreRetard < 100000000055000L)
 	{
@@ -162,7 +164,9 @@ void Game::UpdateModel()
 		if (kr > 1000000000L)
 			kr = kr % 256;
 	}
-		counter = counter + 0.0001f;
+	counter = counter + 0.0001f;
+	for (int i = 0; x < sw; i++)
+		x = i;
 }
 
 
@@ -170,31 +174,27 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	long long moreRetard = 0;
-	for (int i = 0; i < sw; i++)
+	long long retard = 0;
+	for (y = 0; y < sh; y++)
 	{
-		long long retard = 0;
-		for (int j = 0; j < sh; j++)
-		{
-			gfx.PutPixel(i, j, r, g, b);
-			int kr = 0;
-			while (retard < 10000000000000L)
-			{		
-				kr = kr + (retard % 256);
-				retard++;
-				kr = kr % 1000000000;
-			}
-				
-		}
+		gfx.PutPixel( x,y, r, g, b);
 		int kr = 0;
-		while (moreRetard < 100000000055000L)
-		{
-			moreRetard++;
-			kr += (moreRetard % 256);
-			if (kr > 1000000000L)
-				kr = kr % 256;
+		while (retard < 10000000000000L)
+		{		
+			kr = kr + (retard % 256);
+			retard++;
+			kr = kr % 1000000000;
 		}
 			
-		counter = counter + 0.0001f;
 	}
+	int kr = 0;
+	while (moreRetard < 100000000055000L)
+	{
+		moreRetard++;
+		kr += (moreRetard % 256);
+		if (kr > 1000000000L)
+			kr = kr % 256;
+	}
+	counter = counter + 0.0001f;
 }
 
