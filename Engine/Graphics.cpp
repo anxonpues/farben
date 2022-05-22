@@ -51,7 +51,7 @@ Graphics::Graphics( HWNDKey& key )
 	sd.BufferDesc.Width = Graphics::ScreenWidth;
 	sd.BufferDesc.Height = Graphics::ScreenHeight;
 	sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
-	sd.BufferDesc.RefreshRate.Numerator = 1;
+	sd.BufferDesc.RefreshRate.Numerator = 16;		// cambiado de 1 a 16 !!!
 	sd.BufferDesc.RefreshRate.Denominator = 60;
 	sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	sd.OutputWindow = key.hWnd;

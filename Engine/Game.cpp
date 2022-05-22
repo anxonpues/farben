@@ -49,112 +49,132 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	long long moreRetard = 0;
 	for (int i = 0; i < sw; i++)
 	{
-			int val = (int)counter;
-			int mode = val % 11;
-			switch (mode)
+		int val = (int)counter;
+		int mode = val % 11;
+		switch (mode)
+		{
+			case  0:
 			{
-				case  0:
-				{
-					// red steady high, green steasy low, blue step down  MAGENTA to RED
-					r = 255;
-					g = 0;
-					b = 256 - (val % 256);
-					break;
-				}
-				case  1:
-				{
-					// red steady high, green steasy low, blue steady low RED
-					break;
-					r = 255;
-					g = 0;
-					b = 0;
-					break;
-				}
-				case  2:
-				{
-					// red steady high, green step up, blue steady low RED to YELLOW
-					r = 255;
-					g = val % 256;
-					b = 0;
-					break;
-				}
-				case  3:
-				{
-					// red steady high, green steady high, blue steady low YELLOW
-					break;
-					r = 255;
-					g = 255;
-					b = 0;
-					break;
-				}
-				case  4:
-				{
-					// red step down, green steady high, blue steady low YELLOW to GREEN
-					r = 256 - (val % 256);
-					g = 255;
-					b = 0;
-					break;
-				}
-				case  5:
-				{
-					// red steady low, green steady high, blue steady low  GREEN
-					break;
-					r = 0;
-					g = 255;
-					b = 0;
-					break;
-				}
-				case  6:
-				{
-					// red steady low, green steady high, blue step up  GREEN to CYAN
-					r = 0;
-					g = 255;
-					b = val % 256;
-					break;
-				}
-				case  7:
-				{
-					// red steady low, green steady high, blue steady high  CYAN
-					break;
-					r = 0;
-					g = 255;
-					b = 255;
-					break;
-				}
-				case  8:
-				{
-					// red steady low, green step down, blue steady low  CYAN to BLUE
-					r = 0;
-					g = 256 - (val % 256);
-					b = 255;
-					break;
-				}
-				case 9:
-				{
-					// red steady low, green steady low, blue steady high  BLUE
-					break;
-					r = 0;
-					g = 0;
-					b = 255;
-					break;
-				}
-				case 10:
-				{
-					// red step up, green steady low, blue steady high BLUE to  MAGENTA
-					r = val % 256;
-					g = 0;
-					b = 255;
-					break;
-				}
-				default:
-				{}
+				// red steady high, green steasy low, blue step down  MAGENTA to RED
+				r = 255;
+				g = 0;
+				b = 255 - (val % 256);
+				break;
 			}
-			for (int j = 0; j < sh; j++){
-						gfx.PutPixel(i, j, r, g, b);
+			case  1:
+			{
+				// red steady high, green steasy low, blue steady low RED
+				break;
+				r = 255;
+				g = 0;
+				b = 0;
+				break;
 			}
-			counter = counter + 0.001f;
+			case  2:
+			{
+				// red steady high, green step up, blue steady low RED to YELLOW
+				r = 255;
+				g = val % 256;
+				b = 0;
+				break;
+			}
+			case  3:
+			{
+				// red steady high, green steady high, blue steady low YELLOW
+				break;
+				r = 255;
+				g = 255;
+				b = 0;
+				break;
+			}
+			case  4:
+			{
+				// red step down, green steady high, blue steady low YELLOW to GREEN
+				r = 255 - (val % 256);
+				g = 255;
+				b = 0;
+				break;
+			}
+			case  5:
+			{
+				// red steady low, green steady high, blue steady low  GREEN
+				break;
+				r = 0;
+				g = 255;
+				b = 0;
+				break;
+			}
+			case  6:
+			{
+				// red steady low, green steady high, blue step up  GREEN to CYAN
+				r = 0;
+				g = 255;
+				b = val % 256;
+				break;
+			}
+			case  7:
+			{
+				// red steady low, green steady high, blue steady high  CYAN
+				break;
+				r = 0;
+				g = 255;
+				b = 255;
+				break;
+			}
+			case  8:
+			{
+				// red steady low, green step down, blue steady low  CYAN to BLUE
+				r = 0;
+				g = 255 - (val % 256);
+				b = 255;
+				break;
+			}
+			case 9:
+			{
+				// red steady low, green steady low, blue steady high  BLUE
+				break;
+				r = 0;
+				g = 0;
+				b = 255;
+				break;
+			}
+			case 10:
+			{
+				// red step up, green steady low, blue steady high BLUE to  MAGENTA
+				r = val % 256;
+				g = 0;
+				b = 255;
+				break;
+			}
+			default:
+			{}
+		}
+		long long retard = 0;
+		for (int j = 0; j < sh; j++)
+		{
+			gfx.PutPixel(i, j, r, g, b);
+			int kr = 0;
+			while (retard < 10000000000000L)
+			{		
+				kr = kr + (retard % 256);
+				retard++;
+				kr = kr % 1000000000;
+			}
+				
+		}
+		int kr = 0;
+		while (moreRetard < 100000000055000L)
+		{
+			moreRetard++;
+			kr += (moreRetard % 256);
+			if (kr > 1000000000L)
+				kr = kr % 256;
+		}
+			
+		counter = counter + 0.0001f;
 	}
 }
 
